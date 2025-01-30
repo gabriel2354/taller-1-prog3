@@ -1,0 +1,41 @@
+/* Estilo general para la cartelera */
+body {
+  background-color: #1a1a1a; /* Fondo oscuro */
+  color: #ffffff;
+  font-family: 'Arial', sans-serif;
+}
+
+/* Estilo para las tarjetas */
+.max-w-sm {
+  background-color: #2c2c2c; /* Fondo de las tarjetas */
+  border: 1px solid #444; /* Bordes sutiles */
+}
+
+/* Imagen fija */
+.max-w-sm img {
+  width: 100%; /* Ocupa el ancho completo del contenedor */
+  height: 300px; /* Altura fija */
+  object-fit: cover; /* Recorta las imágenes para mantener proporciones */
+  border-radius: 10px 10px 0 0; /* Bordes redondeados superiores */
+}
+
+/* Texto y botones */
+.text-yellow-400 {
+  color: #f5c518;
+}
+
+.text-gray-400 {
+  color: #bbbbbb;
+}
+
+.bg-yellow-500 {
+  background-color: #f5c518;
+}
+
+.bg-yellow-500:hover {
+  background-color: #ffdd57;
+}
+
+.text-blue-500:hover {
+  color: #339af0;
+}

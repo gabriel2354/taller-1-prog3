@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cartelera de Películas - CineMax</title>
+    <!-- CSS de Flowbite -->
+    <link href="https://cdn.jsdelivr.net/npm/flowbite@2.5.2/dist/flowbite.min.css" rel="stylesheet">
+    <link href="/css/cartelera.css" rel="stylesheet">
+</head>
+<body class="bg-gray-900 text-white">
+
+<!-- Navbar -->
+<nav class="bg-gray-800 border-gray-700">
+    <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
+        <a href="#" class="flex items-center">
+            <span class="self-center text-2xl font-semibold text-yellow-400">CineMax</span>
+        </a>
+        <div class="hidden w-full md:block md:w-auto" id="navbar-default">
+            <ul class="font-medium flex flex-col p-4 md:p-0 mt-4 bg-gray-800 md:flex-row md:space-x-8 md:mt-0">
+                <li><a href="/home" class="block py-2 px-3 text-yellow-400 hover:text-yellow-300"  aria-current="home">Inicio</a></li>
+                <li><a href="#" class="block py-2 px-3 text-yellow-400 hover:text-yellow-300">Promociones</a></li>
+                <li><a href="#" class="block py-2 px-3 text-yellow-400 hover:text-yellow-300">Contactos</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<!-- Título -->
+<div class="text-center py-8">
+    <h1 class="text-4xl font-bold text-yellow-400">Cartelera de Películas</h1>
+    <p class="text-lg text-gray-400 mt-2">Descubre las películas en estreno y próximas funciones.</p>
+</div>
+
+<!-- Cartelera -->
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 px-4 md:px-16">
+    <!-- Card de película -->
+    <div class="max-w-sm bg-gray-800 rounded-lg shadow-md">
+        <img class="rounded-t-lg w-full h-60 object-cover" src="/imagenes/avatar1.jpeg" alt="avatar">
+        <div class="p-4">
+            <h3 class="text-xl font-semibold text-yellow-400">Avatar</h3>
+            <p class="mt-2 text-gray-400">Una breve descripción de la película para atraer a los espectadores.</p>
+            <div class="mt-4 flex justify-between">
+                <a href="#" class="text-blue-500 hover:underline">Más Información</a>
+                <a href="/formularioReservas" class="bg-yellow-500 text-black px-4 py-2 rounded-lg hover:bg-yellow-400" aria-current="formularioReservas">Reservar</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Repetir esta tarjeta para cada película -->
+    <div class="max-w-sm bg-gray-800 rounded-lg shadow-md">
+        <img class="rounded-t-lg w-full h-60 object-cover" src="/imagenes/inception.jpg" alt="inception">
+        <div class="p-4">
+            <h3 class="text-xl font-semibold text-yellow-400">Inception</h3>
+            <p class="mt-2 text-gray-400">Descripción interesante para captar la atención del público.</p>
+            <div class="mt-4 flex justify-between">
+                <a href="#" class="text-blue-500 hover:underline">Más Información</a>
+                <a href="/formularioReservas" class="bg-yellow-500 text-black px-4 py-2 rounded-lg hover:bg-yellow-400"  aria-current="formularioReservas">Reservar</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="max-w-sm bg-gray-800 rounded-lg shadow-md">
+        <img class="rounded-t-lg w-full h-60 object-cover" src="/imagenes/matrix.jpg" alt="matrix">
+        <div class="p-4">
+            <h3 class="text-xl font-semibold text-yellow-400">Matrix</h3>
+            <p class="mt-2 text-gray-400">Breve sinopsis para que el usuario se interese en la película.</p>
+            <div class="mt-4 flex justify-between">
+                <a href="#" class="text-blue-500 hover:underline">Más Información</a>
+                <a href="/formularioReservas" class="bg-yellow-500 text-black px-4 py-2 rounded-lg hover:bg-yellow-400"  aria-current="formularioReservas">Reservar</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- JavaScript de Flowbite -->
+<script src="https://cdn.jsdelivr.net/npm/flowbite@2.5.2/dist/flowbite.min.js"></script>
+</body>
+</html>

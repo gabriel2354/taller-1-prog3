@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+
+  <title>CineMax - Tu Cine Favorito</title>
+  <!-- CSS de Flowbite -->
+  <link href="https://cdn.jsdelivr.net/npm/flowbite@2.5.2/dist/flowbite.min.css" rel="stylesheet">
+  <link href="/css/home.css" rel="stylesheet">
+</head>
+<body>
+
+<!-- Navbar de Flowbite -->
+<nav class="bg-white border-gray-200 dark:bg-gray-900">
+  <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
+    <a href="#" class="flex items-center">
+      <span class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">CineMax</span>
+    </a>
+    <div class="hidden w-full md:block md:w-auto" id="navbar-default">
+      <ul class="font-medium flex flex-col p-4 md:p-0 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:space-x-8 md:mt-0 md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
+        <li><a href="/cartelera" class="block py-2 px-3 text-gray-700 hover:text-blue-500" aria-current="cartelera">Cartelera</a></li>
+
+        <li><a href="#" class="block py-2 px-3 text-gray-700 hover:text-blue-500">Promociones</a></li>
+        <li><a href="/formularioUsuarios" class="block py-2 px-3 text-gray-700 hover:text-blue-500" aria-current="formularioUsuarios">Registrarse</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<!-- Carrusel de Flowbite -->
+<div id="carouselExample" class="relative w-full" data-carousel="slide">
+  <div class="relative h-56 overflow-hidden rounded-lg md:h-96">
+    <div class="hidden duration-700 ease-in-out" data-carousel-item>
+      <img src="/imagenes/imagen22.jpg" class="absolute block w-full top-0 left-0" alt="Estrenos">
+    </div>
+    <div class="hidden duration-700 ease-in-out" data-carousel-item>
+      <img src="/imagenes/imagen23.jpg" class="absolute block w-full top-0 left-0" alt="Películas en Cartelera">
+    </div>
+  </div>
+  <button type="button" class="absolute top-0 left-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none" data-carousel-prev>
+    <span class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-white/30 group-hover:bg-white/50">
+      <svg class="w-4 h-4 text-black" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
+        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 1L1 5l4 4"/>
+      </svg>
+    </span>
+  </button>
+  <button type="button" class="absolute top-0 right-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none" data-carousel-next>
+    <span class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-white/30 group-hover:bg-white/50">
+      <svg class="w-4 h-4 text-black" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
+        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 9l4-4-4-4"/>
+      </svg>
+    </span>
+  </button>
+</div>
+
+<!-- Sección de descripción con botones -->
+<section class="text-center py-12">
+  <h2 class="text-3xl font-bold">Descubre la Magia del Cine</h2>
+  <p class="mt-4 text-lg">Disfruta de los mejores estrenos y promociones exclusivas en CineMax.</p>
+  <div class="mt-6 flex justify-center space-x-4">
+    <a href="/cartelera" class="px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700" aria-current="cartelera">Ver Cartelera</a>
+    <a href="/formularioReservas" class="px-6 py-3 bg-gray-600 text-white rounded-lg hover:bg-gray-700" aria-current="formularioReservas">Reservar Entrada</a>
+  </div>
+</section>
+
+<!-- JavaScript de Flowbite -->
+<script src="https://cdn.jsdelivr.net/npm/flowbite@2.5.2/dist/flowbite.min.js"></script>
+</body>
+</html>

@@ -12,12 +12,7 @@ import java.util.List;
 @Table(name = "reservas_peliculas")
 public class ReservasPeliculas {
 
-    @Autowired
-    private ClientesRepositorio clientesRepositorio;
 
-    public List<Clientes> obtenerTodosLosClientes() {
-        return clientesRepositorio.findAll(); // Obtiene todos los clientes
-    }
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

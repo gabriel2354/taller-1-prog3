@@ -1,7 +1,6 @@
 package com.taller_1.programacion_3.Controlador;
 
 import com.taller_1.programacion_3.Entidad.ReservasPeliculas;
-import com.taller_1.programacion_3.Servicio.ClienteServicio;
 import com.taller_1.programacion_3.Servicio.ReservasServicio;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,12 +35,6 @@ public class ReservasControlador {
         // Guarda la reserva si no hay errores
         reservasServicio.crearReserva(reserva);
         return "redirect:/reservas/lista"; // Redirige a la lista de reservas
-    }
-    @GetMapping("/formulario")
-    public String mostrarFormularioReservas(Model model) {
-        model.addAttribute("reserva", new ReservasPeliculas());
-        model.addAttribute("clientes", clienteservicio.obtenerTodosLosClientes()); // Carga los clientes
-        return "pages/formularioReservas";
     }
 
 

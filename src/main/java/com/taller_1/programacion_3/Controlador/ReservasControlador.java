@@ -1,41 +1,54 @@
 package com.taller_1.programacion_3.Controlador;
 
 import com.taller_1.programacion_3.Entidad.ReservasPeliculas;
+import com.taller_1.programacion_3.Servicio.ClienteServicio;
+import com.taller_1.programacion_3.Servicio.ReservasServicio;
 import jakarta.validation.Valid;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-
-import java.util.List;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
+@RequestMapping("/reservas") // Ruta base para vistas relacionadas con reservas
 public class ReservasControlador {
 
-    private final List<String> peliculas = List.of("Avatar", "Inception", "Matrix");
-    private final List<String> funciones = List.of("10:00 AM", "2:00 PM", "6:00 PM");
+    @Autowired
+    private ReservasServicio reservasServicio;
 
-    @GetMapping("/formularioReservas")
+    // Mostrar el formulario de reservas
+    @GetMapping("/formulario")
     public String mostrarFormularioReservas(Model model) {
-        ReservasPeliculas reserva = new ReservasPeliculas();
-        model.addAttribute("boleto", reserva);
-        model.addAttribute("peliculas", peliculas);
-        model.addAttribute("funciones", funciones);
-        return "pages/formularioReservas";
+        model.addAttribute("reserva", new ReservasPeliculas());
+        return "pages/formularioReservas"; // Ruta a la plantilla HTML
     }
 
-    @PostMapping("/formularioReservas")
-    public String procesarReserva(@Valid @ModelAttribute("boleto") ReservasPeliculas reserva,
-                                  BindingResult result, Model model) {
+    // Guardar una nueva reserva desde el formulario
+    @PostMapping("/guardar")
+    public String guardarReserva(@Valid @ModelAttribute("reserva") ReservasPeliculas reserva, BindingResult result, Model model) {
+        // Verifica si hay errores en la validación
         if (result.hasErrors()) {
-            model.addAttribute("peliculas", peliculas);
-            model.addAttribute("funciones", funciones);
+            // Devuelve el formulario con los errores mostrados
             return "pages/formularioReservas";
         }
 
-        System.out.println("Reserva procesada con éxito: " + reserva);
-        return "redirect:/home";
+        // Guarda la reserva si no hay errores
+        reservasServicio.crearReserva(reserva);
+        return "redirect:/reservas/lista"; // Redirige a la lista de reservas
+    }
+    @GetMapping("/formulario")
+    public String mostrarFormularioReservas(Model model) {
+        model.addAttribute("reserva", new ReservasPeliculas());
+        model.addAttribute("clientes", clienteservicio.obtenerTodosLosClientes()); // Carga los clientes
+        return "pages/formularioReservas";
+    }
+
+
+    // Mostrar lista de reservas
+    @GetMapping("/lista")
+    public String listarReservas(Model model) {
+        model.addAttribute("reservas", reservasServicio.obtenerTodasLasReservas());
+        return "pages/listaReservas"; // Ruta a la plantilla HTML
     }
 }

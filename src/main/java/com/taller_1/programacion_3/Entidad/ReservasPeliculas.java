@@ -1,55 +1,66 @@
 package com.taller_1.programacion_3.Entidad;
 
-import jakarta.validation.constraints.*;
-import lombok.AllArgsConstructor;
+import com.taller_1.programacion_3.Repositorio.ClientesRepositorio;
+import jakarta.persistence.*;
 import lombok.Data;
-import lombok.NoArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
+
+import java.util.List;
 
 @Data
-@AllArgsConstructor
-@NoArgsConstructor
+@Entity
+@Table(name = "reservas_peliculas")
 public class ReservasPeliculas {
 
-    @NotBlank(message = "El nombre es obligatorio.")
-    private String nombreUsuario;
+    @Autowired
+    private ClientesRepositorio clientesRepositorio;
 
-    @NotBlank(message = "Debe seleccionar una película.")
-    private String idPelicula;
+    public List<Clientes> obtenerTodosLosClientes() {
+        return clientesRepositorio.findAll(); // Obtiene todos los clientes
+    }
 
-    @NotBlank(message = "Debe seleccionar un horario.")
-    private String idFuncion;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
-    @NotBlank(message = "El asiento es obligatorio.")
-    @Size(max = 10, message = "El número de asiento no debe exceder los 10 caracteres.")
+    @Column(nullable = false, length = 200)
+    private String pelicula;
+
+    @Column(nullable = false)
+    private String horario;
+
+    @Column(nullable = false, length = 10)
     private String asiento;
 
-    @NotNull(message = "El monto pagado es obligatorio.")
-    @DecimalMin(value = "1.0", message = "El monto debe ser mayor o igual a 1.")
-    @DecimalMax(value = "500.0", message = "El monto no puede exceder los 500.")
+    @Column(nullable = false)
     private Double montoPagado;
 
-    public String getNombreUsuario() {
-        return nombreUsuario;
+    @ManyToOne
+    @JoinColumn(name = "cliente_id", nullable = false)
+    private Clientes cliente;
+
+    public Long getId() {
+        return id;
     }
 
-    public void setNombreUsuario(String nombreUsuario) {
-        this.nombreUsuario = nombreUsuario;
+    public void setId(Long id) {
+        this.id = id;
     }
 
-    public String getIdPelicula() {
-        return idPelicula;
+    public String getPelicula() {
+        return pelicula;
     }
 
-    public void setIdPelicula(String idPelicula) {
-        this.idPelicula = idPelicula;
+    public void setPelicula(String pelicula) {
+        this.pelicula = pelicula;
     }
 
-    public String getIdFuncion() {
-        return idFuncion;
+    public String getHorario() {
+        return horario;
     }
 
-    public void setIdFuncion(String idFuncion) {
-        this.idFuncion = idFuncion;
+    public void setHorario(String horario) {
+        this.horario = horario;
     }
 
     public String getAsiento() {
@@ -66,5 +77,13 @@ public class ReservasPeliculas {
 
     public void setMontoPagado(Double montoPagado) {
         this.montoPagado = montoPagado;
+    }
+
+    public Clientes getCliente() {
+        return cliente;
+    }
+
+    public void setCliente(Clientes cliente) {
+        this.cliente = cliente;
     }
 }

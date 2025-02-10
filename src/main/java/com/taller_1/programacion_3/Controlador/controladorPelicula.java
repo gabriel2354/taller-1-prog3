@@ -21,7 +21,7 @@ public class controladorPelicula {
     public String listarPeliculas(Model model) {
         List<Pelicula> peliculas = peliculaServicio.listarPeliculas();
         model.addAttribute("peliculas", peliculas);
-        return "listas/listaPelicula"; // Apunta al archivo HTML para mostrar la lista
+        return "Listas/listaPelicula"; // Apunta al archivo HTML para mostrar la lista
     }
 
     // Mostrar formulario para crear una nueva película

@@ -31,7 +31,7 @@ public class ReservaControlador {
     public String listarReservas(Model model) {
         List<Reserva> reservas = reservaServicio.listarReservas();
         model.addAttribute("reservas", reservas);
-        return "listas/listaReserva";
+        return "Listas/listaReserva";
     }
 
     @GetMapping("/formulario")

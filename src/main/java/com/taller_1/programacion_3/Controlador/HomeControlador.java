@@ -6,10 +6,13 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 public class HomeControlador {
 
-    @GetMapping("/home")
+    @GetMapping("/")
     public String mostrarHome() {
         return "pages/home"; // Vista de inicio
     }
 
-
+    @GetMapping("/cartelera")
+    public String mostrarCartelera() {
+        return "pages/cartelera"; // Nombre del archivo cartelera.html en templates
+    }
 }

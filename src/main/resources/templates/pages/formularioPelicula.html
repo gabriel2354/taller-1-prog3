@@ -3,18 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <link href="https://cdn.jsdelivr.net/npm/flowbite@2.5.2/dist/flowbite.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&display=swap" rel="stylesheet">
-    <title>Registro de Clientes</title>
+    <title>Formulario de Película</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
-    <script src="https://unpkg.com/flowbite@1.5.3/dist/flowbite.min.js"></script>
-
 </head>
-
 <body class="bg-gray-900 text-white">
+
 <!-- Capa de fondo con opacidad -->
 <div class="overlay absolute inset-0"></div>
-
 
 <!-- Navbar -->
 <nav class="bg-black bg-opacity-90 backdrop-blur-md border-b border-gray-700 shadow-lg py-3">
@@ -31,55 +29,66 @@
         </div>
     </div>
 </nav>
+
 <!-- Contenedor del formulario -->
 <div class="relative z-10 flex items-center justify-center min-h-screen">
     <div class="bg-white bg-opacity-90 p-8 rounded-lg shadow-lg w-full max-w-3xl">
-        <h2 class="text-3xl font-bold text-center text-gray-800 mb-6">Registro de Clientes</h2>
-        <form th:action="@{/clientes/guardar}" method="post" th:object="${cliente}" class="space-y-6">
-            <input type="hidden" th:field="*{id}" />
+        <h2 class="text-3xl font-bold text-center text-gray-800 mb-6">Formulario de Película</h2>
+        <form th:action="@{/peliculas/guardar}" method="post" th:object="${pelicula}" class="space-y-6">
+            <input type="hidden" th:if="*{id != null}" th:field="*{id}">
 
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div>
-                    <label for="nombre" class="block mb-2 text-sm font-medium text-gray-700">Nombre</label>
-                    <input type="text" id="nombre" th:field="*{nombre}" class="w-full px-4 py-2 border rounded-lg focus:ring focus:ring-blue-300" placeholder="Ingrese el nombre">
-                    <span class="text-red-500 text-sm" th:if="${#fields.hasErrors('nombre')}" th:errors="*{nombre}"></span>
+                    <label for="titulo" class="block mb-2 text-sm font-medium text-gray-700">Título</label>
+                    <input type="text" id="titulo" th:field="*{titulo}" class="w-full px-4 py-2 border rounded-lg focus:ring focus:ring-blue-300" required>
                 </div>
                 <div>
-                    <label for="apellido" class="block mb-2 text-sm font-medium text-gray-700">Apellido</label>
-                    <input type="text" id="apellido" th:field="*{apellido}" class="w-full px-4 py-2 border rounded-lg focus:ring focus:ring-blue-300" placeholder="Ingrese el apellido">
-                    <span class="text-red-500 text-sm" th:if="${#fields.hasErrors('apellido')}" th:errors="*{apellido}"></span>
+                    <label for="duracion" class="block mb-2 text-sm font-medium text-gray-700">Duración (minutos)</label>
+                    <input type="number" id="duracion" th:field="*{duracion}" class="w-full px-4 py-2 border rounded-lg focus:ring focus:ring-blue-300" required>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div>
+                    <label for="genero" class="block mb-2 text-sm font-medium text-gray-700">Género</label>
+                    <input type="text" id="genero" th:field="*{genero}" class="w-full px-4 py-2 border rounded-lg focus:ring focus:ring-blue-300" required>
+                </div>
+                <div>
+                    <label for="clasificacion" class="block mb-2 text-sm font-medium text-gray-700">Clasificación</label>
+                    <input type="text" id="clasificacion" th:field="*{clasificacion}" class="w-full px-4 py-2 border rounded-lg focus:ring focus:ring-blue-300" required>
                 </div>
             </div>
 
             <div>
-                <label for="direccion" class="block mb-2 text-sm font-medium text-gray-700">Dirección</label>
-                <input type="text" id="direccion" th:field="*{direccion}" class="w-full px-4 py-2 border rounded-lg focus:ring focus:ring-blue-300" placeholder="Ingrese la dirección">
-                <span class="text-red-500 text-sm" th:if="${#fields.hasErrors('direccion')}" th:errors="*{direccion}"></span>
+                <label for="sinopsis" class="block mb-2 text-sm font-medium text-gray-700">Sinopsis</label>
+                <textarea id="sinopsis" th:field="*{sinopsis}" class="w-full px-4 py-2 border rounded-lg focus:ring focus:ring-blue-300" required></textarea>
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div>
-                    <label for="telefono" class="block mb-2 text-sm font-medium text-gray-700">Teléfono</label>
-                    <input type="text" id="telefono" th:field="*{telefono}" class="w-full px-4 py-2 border rounded-lg focus:ring focus:ring-blue-300" placeholder="Ingrese el teléfono">
-                    <span class="text-red-500 text-sm" th:if="${#fields.hasErrors('telefono')}" th:errors="*{telefono}"></span>
+                    <label for="director" class="block mb-2 text-sm font-medium text-gray-700">Director</label>
+                    <input type="text" id="director" th:field="*{director}" class="w-full px-4 py-2 border rounded-lg focus:ring focus:ring-blue-300" required>
                 </div>
                 <div>
-                    <label for="fechaNacimiento" class="block mb-2 text-sm font-medium text-gray-700">Fecha de Nacimiento</label>
-                    <input type="date" id="fechaNacimiento" th:field="*{fechaNacimiento}" class="w-full px-4 py-2 border rounded-lg focus:ring focus:ring-blue-300">
-                    <span class="text-red-500 text-sm" th:if="${#fields.hasErrors('fechaNacimiento')}" th:errors="*{fechaNacimiento}"></span>
+                    <label for="idioma" class="block mb-2 text-sm font-medium text-gray-700">Idioma</label>
+                    <input type="text" id="idioma" th:field="*{idioma}" class="w-full px-4 py-2 border rounded-lg focus:ring focus:ring-blue-300" required>
                 </div>
+            </div>
+
+            <div>
+                <label for="fechaEstreno" class="block mb-2 text-sm font-medium text-gray-700">Fecha de Estreno</label>
+                <input type="date" id="fechaEstreno" th:field="*{fechaEstreno}" class="w-full px-4 py-2 border rounded-lg focus:ring focus:ring-blue-300" required>
             </div>
 
             <div class="text-center">
                 <button type="submit" class="px-6 py-2 text-lg font-medium text-white bg-blue-600 rounded-lg hover:bg-blue-700 focus:ring focus:ring-blue-300">
-                    Registrar Cliente
+                    Guardar Película
                 </button>
-                <a href="/clientes" class="btn btn-secondary btn-lg shadow-sm">Cancelar</a>
+                <a href="/peliculas" class="btn btn-secondary btn-lg shadow-sm">Cancelar</a>
             </div>
         </form>
     </div>
 </div>
-
 
 <!-- Línea divisoria -->
 <div class="border-t border-gray-700 my-6"></div>
@@ -139,6 +148,8 @@
     </div>
 </footer>
 
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/js/all.min.js"></script>
 </body>
 </html>

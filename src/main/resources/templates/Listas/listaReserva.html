@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://cdn.jsdelivr.net/npm/flowbite@2.5.2/dist/flowbite.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&display=swap" rel="stylesheet">
+  <title>Lista de Reservas</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
+</head>
+<body class="bg-gray-900 text-white">
+
+
+<!-- Navbar -->
+<nav class="bg-black bg-opacity-90 backdrop-blur-md border-b border-gray-700 shadow-lg py-3">
+  <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto px-4">
+    <a th:href="@{/}" class="flex items-center space-x-3">
+      <i class="fa-solid fa-film text-yellow-400 text-3xl"></i>
+      <span class="text-2xl font-bold text-yellow-400 font-cinematic">CineMax</span>
+    </a>
+    <div class="hidden md:flex space-x-6">
+      <a th:href="@{/}" class="text-yellow-400 hover:text-yellow-300 transition"><i class="fa-solid fa-home"></i> Inicio</a>
+      <a th:href="@{/reservas}" class="text-yellow-400 hover:text-yellow-300 transition"><i class="fa-solid fa-ticket"></i> Reservas</a>
+      <a th:href="@{/clientes}" class="text-yellow-400 hover:text-yellow-300 transition"><i class="fa-solid fa-users"></i> Clientes</a>
+      <a th:href="@{/peliculas}" class="text-yellow-400 hover:text-yellow-300 transition"><i class="fa-solid fa-clapperboard"></i> Películas</a>
+    </div>
+  </div>
+</nav>
+
+
+<div class="container mt-5">
+  <h1 class="text-center mb-4 text-primary font-weight-bold">Lista de Reservas</h1>
+
+  <!-- Botón para agregar nueva reserva -->
+  <div class="mb-3 text-end">
+    <a th:href="@{/reservas/formulario}" class="btn btn-success btn-lg shadow-lg">Nueva Reserva</a>
+  </div>
+
+  <!-- Tabla para mostrar las reservas -->
+  <table class="table table-striped table-bordered table-hover shadow-sm">
+    <thead class="thead-dark">
+    <tr class="bg-dark text-white">
+      <th>ID</th>
+      <th>Cliente</th>
+      <th>Película</th>
+      <th>Cantidad de Entradas</th>
+      <th>Fecha de Reserva</th>
+      <th>Total ($)</th>
+      <th>Acciones</th>
+    </tr>
+    </thead>
+    <tbody>
+    <!-- Iterar sobre la lista de reservas -->
+    <tr th:each="reserva : ${reservas}" class="align-middle">
+      <td th:text="${reserva.id}"></td>
+      <td th:text="${reserva.cliente.nombre}"></td>
+      <td th:text="${reserva.pelicula.titulo}"></td>
+      <td th:text="${reserva.cantidadEntradas}"></td>
+      <td th:text="${#temporals.format(reserva.fechaReserva, 'dd-MM-yyyy HH:mm')}"></td>
+      <td th:text="${reserva.total}"></td>
+      <td class="text-center">
+        <!-- Botón para editar -->
+        <a th:href="@{/reservas/editar/{id}(id=${reserva.id})}" class="btn btn-warning btn-sm me-2 shadow-sm">Editar</a>
+        <!-- Botón para eliminar -->
+        <a th:href="@{/reservas/eliminar/{id}(id=${reserva.id})}" class="btn btn-danger btn-sm shadow-sm"
+           onclick="return confirm('¿Estás seguro de eliminar esta reserva?');">Eliminar</a>
+      </td>
+    </tr>
+
+    <!-- Mensaje si no hay reservas registradas -->
+    <tr th:if="${reservas.isEmpty()}">
+      <td colspan="7" class="text-center text-muted">No hay reservas registradas</td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+
+
+<!-- Línea divisoria -->
+<div class="border-t border-gray-700 my-6"></div>
+<!-- FOOTER -->
+<footer class="bg-black text-white py-10 mt-auto">
+  <div class="max-w-screen-xl mx-auto px-4">
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
+      <!-- Sección 1: Información -->
+      <div class="flex flex-col items-center">
+        <h3 class="text-2xl font-bold text-yellow-400">CineMax</h3>
+        <p class="mt-2 text-gray-400">
+          Vive la magia del cine con la mejor cartelera, promociones y experiencias únicas.
+        </p>
+      </div>
+
+      <!-- Sección 2: Redes Sociales -->
+      <div class="flex flex-col items-center">
+        <h3 class="text-2xl font-bold text-yellow-400">Síguenos</h3>
+        <div class="mt-3 flex justify-center space-x-4">
+          <a href="#" class="text-gray-400 hover:text-yellow-300 transition transform hover:scale-110">
+            <i class="fa-brands fa-facebook-f text-3xl"></i>
+          </a>
+          <a href="#" class="text-gray-400 hover:text-yellow-300 transition transform hover:scale-110">
+            <i class="fa-brands fa-twitter text-3xl"></i>
+          </a>
+          <a href="#" class="text-gray-400 hover:text-yellow-300 transition transform hover:scale-110">
+            <i class="fa-brands fa-instagram text-3xl"></i>
+          </a>
+          <a href="#" class="text-gray-400 hover:text-yellow-300 transition transform hover:scale-110">
+            <i class="fa-brands fa-youtube text-3xl"></i>
+          </a>
+        </div>
+      </div>
+
+    </div>
+
+
+    <!-- Línea divisoria -->
+    <div class="border-t border-gray-700 my-6"></div>
+
+    <!-- Footer Mejorado -->
+    <footer class="bg-black text-white py-10">
+      <div class="max-w-screen-xl mx-auto px-6 py-8">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
+
+          <!-- Sección 1: Sobre Nosotros -->
+          <div class="flex flex-col items-center">
+            <h3 class="text-2xl font-bold text-yellow-400">Sobre CineMax</h3>
+            <p class="mt-2 text-gray-400 text-sm leading-relaxed">
+              CineMax es el destino definitivo para los amantes del cine. Con más de 20 años de experiencia,
+              ofrecemos una cartelera variada, eventos especiales y promociones exclusivas.
+            </p>
+          </div>
+
+          <!-- Sección 2: Contacto -->
+          <div class="flex flex-col items-center">
+            <h3 class="text-2xl font-bold text-yellow-400">Contáctanos</h3>
+            <p class="mt-2 text-gray-400 text-sm">
+              📍 Dirección: Calle 123, Ciudad Cine <br>
+              📞 Teléfono: +123 456 7890 <br>
+              📧 Email: contacto@cinemax.com
+            </p>
+          </div>
+
+          <!-- Sección 3: Redes Sociales -->
+          <div class="flex flex-col items-center">
+            <h3 class="text-2xl font-bold text-yellow-400">Síguenos</h3>
+            <div class="mt-3 flex space-x-4">
+              <a href="#" class="text-gray-400 hover:text-yellow-300 transition transform hover:scale-110">
+                <i class="fa-brands fa-facebook-f text-3xl"></i>
+              </a>
+              <a href="#" class="text-gray-400 hover:text-yellow-300 transition transform hover:scale-110">
+                <i class="fa-brands fa-twitter text-3xl"></i>
+              </a>
+              <a href="#" class="text-gray-400 hover:text-yellow-300 transition transform hover:scale-110">
+                <i class="fa-brands fa-instagram text-3xl"></i>
+              </a>
+              <a href="#" class="text-gray-400 hover:text-yellow-300 transition transform hover:scale-110">
+                <i class="fa-brands fa-youtube text-3xl"></i>
+              </a>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Línea divisoria -->
+        <div class="border-t border-gray-700 my-6"></div>
+
+        <!-- Derechos de autor -->
+        <p class="text-center text-gray-500">
+          &copy; 2025 CineMax. Todos los derechos reservados.
+        </p>
+      </div>
+    </footer>
+
+<!-- Importar Font Awesome para los íconos -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/js/all.min.js" crossorigin="anonymous"></script>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+</body>
+
+
+</html>

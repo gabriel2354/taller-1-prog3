@@ -11,5 +11,8 @@ public class HomeControlador {
         return "pages/home"; // Vista de inicio
     }
 
-
+    @GetMapping("/cartelera")
+    public String mostrarCartelera() {
+        return "pages/cartelera"; // Nombre del archivo cartelera.html en templates
+    }
 }

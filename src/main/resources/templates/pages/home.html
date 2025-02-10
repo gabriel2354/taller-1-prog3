@@ -1,72 +1,189 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-
-
-  <title>CineMax - Tu Cine Favorito</title>
-  <!-- CSS de Flowbite -->
-  <link href="https://cdn.jsdelivr.net/npm/flowbite@2.5.2/dist/flowbite.min.css" rel="stylesheet">
-  <link href="/css/home.css" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CineMax - Tu Cine Favorito</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/flowbite@2.5.2/dist/flowbite.min.css" rel="stylesheet">
 </head>
-<body>
+<body class="bg-gray-900 text-white">
 
-<!-- Navbar de Flowbite -->
-<nav class="bg-white border-gray-200 dark:bg-gray-900">
-  <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
-    <a href="#" class="flex items-center">
-      <span class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">CineMax</span>
-    </a>
-    <div class="hidden w-full md:block md:w-auto" id="navbar-default">
-      <ul class="font-medium flex flex-col p-4 md:p-0 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:space-x-8 md:mt-0 md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
-        <li><a href="/cartelera" class="block py-2 px-3 text-gray-700 hover:text-blue-500" aria-current="cartelera">Cartelera</a></li>
-
-        <li><a href="#" class="block py-2 px-3 text-gray-700 hover:text-blue-500">Promociones</a></li>
-        <li><a th:href="@{/clientes/formulario}" class="block py-2 px-3 text-gray-700 hover:text-blue-500" >Registrarse</a></li>
-      </ul>
+<!-- Navbar -->
+<nav class="bg-black bg-opacity-90 backdrop-blur-md border-b border-gray-700 shadow-lg py-3">
+    <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto px-4">
+        <a th:href="@{/}" class="flex items-center space-x-3">
+            <i class="fa-solid fa-film text-yellow-400 text-3xl"></i>
+            <span class="text-2xl font-bold text-yellow-400 font-cinematic">CineMax</span>
+        </a>
+        <div class="hidden md:flex space-x-6">
+            <a th:href="@{/}" class="text-yellow-400 hover:text-yellow-300 transition"><i class="fa-solid fa-home"></i> Inicio</a>
+            <a th:href="@{/reservas}" class="text-yellow-400 hover:text-yellow-300 transition"><i class="fa-solid fa-ticket"></i> Reservas</a>
+            <a th:href="@{/clientes}" class="text-yellow-400 hover:text-yellow-300 transition"><i class="fa-solid fa-users"></i> Clientes</a>
+            <a th:href="@{/peliculas}" class="text-yellow-400 hover:text-yellow-300 transition"><i class="fa-solid fa-clapperboard"></i> Películas</a>
+        </div>
     </div>
-  </div>
 </nav>
-
-<!-- Carrusel de Flowbite -->
-<div id="carouselExample" class="relative w-full" data-carousel="slide">
-  <div class="relative h-56 overflow-hidden rounded-lg md:h-96">
-    <div class="hidden duration-700 ease-in-out" data-carousel-item>
-      <img src="/imagenes/imagen22.jpg" class="absolute block w-full top-0 left-0" alt="Estrenos">
+<!-- Carrusel -->
+<div id="carouselExample" class="carousel slide relative w-full bg-black" data-bs-ride="carousel">
+    <div class="carousel-inner relative w-full overflow-hidden rounded-lg">
+        <!-- Imagen 1 -->
+        <div class="carousel-item active">
+            <img src="/imagenes/imagen22.jpg" class="d-block w-100 h-screen object-cover" alt="Estrenos">
+            <div class="absolute bottom-0 left-0 w-full p-4 bg-black bg-opacity-70">
+                <h2 class="text-lg font-bold">Estrenos</h2>
+                <p class="text-sm">Descubre las últimas películas en cartelera.</p>
+            </div>
+        </div>
+        <!-- Imagen 2 -->
+        <div class="carousel-item">
+            <img src="/imagenes/imagen23.jpg" class="d-block w-100 h-screen object-cover" alt="Películas Populares">
+            <div class="absolute bottom-0 left-0 w-full p-4 bg-black bg-opacity-70">
+                <h2 class="text-lg font-bold">Películas Populares</h2>
+                <p class="text-sm">Las películas más vistas y comentadas por nuestros usuarios.</p>
+            </div>
+        </div>
+        <!-- Imagen 3 -->
+        <div class="carousel-item">
+            <img src="/imagenes/imagen24.jpg" class="d-block w-100 h-screen object-cover" alt="Próximos Estrenos">
+            <div class="absolute bottom-0 left-0 w-full p-4 bg-black bg-opacity-70">
+                <h2 class="text-lg font-bold">Próximos Estrenos</h2>
+                <p class="text-sm">¡No te pierdas los próximos estrenos que llegarán a CineMax!</p>
+            </div>
+        </div>
     </div>
-    <div class="hidden duration-700 ease-in-out" data-carousel-item>
-      <img src="/imagenes/imagen23.jpg" class="absolute block w-full top-0 left-0" alt="Películas en Cartelera">
-    </div>
-  </div>
-  <button type="button" class="absolute top-0 left-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none" data-carousel-prev>
-    <span class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-white/30 group-hover:bg-white/50">
-      <svg class="w-4 h-4 text-black" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
-        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 1L1 5l4 4"/>
-      </svg>
-    </span>
-  </button>
-  <button type="button" class="absolute top-0 right-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none" data-carousel-next>
-    <span class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-white/30 group-hover:bg-white/50">
-      <svg class="w-4 h-4 text-black" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
-        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 9l4-4-4-4"/>
-      </svg>
-    </span>
-  </button>
 </div>
 
-<!-- Sección de descripción con botones -->
-<section class="text-center py-12">
-  <h2 class="text-3xl font-bold">Descubre la Magia del Cine</h2>
-  <p class="mt-4 text-lg">Disfruta de los mejores estrenos y promociones exclusivas en CineMax.</p>
-  <div class="mt-6 flex justify-center space-x-4">
-    <a href="/cartelera" class="px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700" aria-current="cartelera">Ver Cartelera</a>
-    <a href="/formularioReservas" class="px-6 py-3 bg-gray-600 text-white rounded-lg hover:bg-gray-700" aria-current="formularioReservas">Reservar Entrada</a>
-  </div>
+<!-- Script de Bootstrap -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+
+    <!-- Controles de navegación -->
+    <button class="carousel-control-prev absolute top-0 bottom-0 left-0 flex items-center justify-center p-0 text-center text-white hover:text-yellow-300 focus:outline-none" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon inline-block bg-no-repeat" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next absolute top-0 bottom-0 right-0 flex items-center justify-center p-0 text-center text-white hover:text-yellow-300 focus:outline-none" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
+        <span class="carousel-control-next-icon inline-block bg-no-repeat" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+    </button>
+</div>
+
+<!-- Sección de descripción mejorada -->
+<section class="text-center py-12 px-6">
+    <h2 class="text-4xl font-bold">Vive la experiencia del cine como nunca antes</h2>
+    <p class="mt-4 text-lg text-gray-300">
+        En <strong>CineMax</strong>, no solo proyectamos películas, sino que ofrecemos una experiencia cinematográfica única.
+        Contamos con la mejor tecnología en imagen y sonido, butacas ultra cómodas y una variedad de snacks premium para
+        que disfrutes cada función al máximo.
+    </p>
+    <p class="mt-2 text-lg text-gray-300">
+        Nuestro catálogo incluye los últimos estrenos, clásicos restaurados y eventos exclusivos, todo pensado para los
+        verdaderos amantes del cine.
+    </p>
+    <div class="mt-6 flex justify-center space-x-4">
+        <a th:href="@{/cartelera}" class="px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700">Ver Cartelera</a>
+        <a th:href="@{/reservas}" class="px-6 py-3 bg-gray-600 text-white rounded-lg hover:bg-gray-700">Reservar Entrada</a>
+    </div>
+</section>
+<!-- Información General -->
+<section class="bg-gray-800 py-12 px-6 text-center">
+    <h2 class="text-3xl font-bold text-yellow-400">¿Por qué elegir CineMax?</h2>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mt-6">
+        <div class="bg-gray-900 p-6 rounded-lg shadow-md">
+            <i class="fa-solid fa-star text-yellow-400 text-4xl"></i>
+            <h3 class="text-xl font-bold mt-4">Calidad de Proyección</h3>
+            <p class="mt-2 text-gray-300">Contamos con pantallas de última generación y sonido envolvente para ofrecerte una experiencia visual y auditiva única.</p>
+        </div>
+        <div class="bg-gray-900 p-6 rounded-lg shadow-md">
+            <i class="fa-solid fa-chair text-yellow-400 text-4xl"></i>
+            <h3 class="text-xl font-bold mt-4">Comodidad</h3>
+            <p class="mt-2 text-gray-300">Disfruta de nuestras salas con asientos reclinables y un ambiente acogedor para que vivas cada película con total confort.</p>
+        </div>
+        <div class="bg-gray-900 p-6 rounded-lg shadow-md">
+            <i class="fa-solid fa-popcorn text-yellow-400 text-4xl"></i>
+            <h3 class="text-xl font-bold mt-4">Variedad de Snacks</h3>
+            <p class="mt-2 text-gray-300">Desde las clásicas palomitas hasta opciones gourmet, nuestro menú de snacks hará que tu experiencia sea aún más placentera.</p>
+        </div>
+    </div>
 </section>
 
-<!-- JavaScript de Flowbite -->
+<section class="bg-gray-800 py-12 px-6 text-center">
+    <h2 class="text-3xl font-bold text-yellow-400">Nuestra Promesa</h2>
+    <div class="mt-6 text-lg text-gray-300">
+        <p>En CineMax, nos comprometemos a brindarte una experiencia cinematográfica única y de calidad. Nuestra promesa es ofrecerte:</p>
+        <ul class="mt-4 list-disc text-left text-lg max-w-4xl mx-auto">
+            <li>Películas en alta definición con sonido envolvente</li>
+            <li>Un ambiente cómodo y amigable para toda la familia</li>
+            <li>Precios accesibles y promociones especiales</li>
+            <li>Un equipo de atención al cliente dispuesto a ayudarte en todo momento</li>
+        </ul>
+    </div>
+</section>
+
+
+<!-- Línea divisoria -->
+<div class="border-t border-gray-700 my-6"></div>
+
+<!-- Footer Mejorado -->
+<footer class="bg-black text-white py-10">
+    <div class="max-w-screen-xl mx-auto px-6 py-8">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
+
+            <!-- Sección 1: Sobre Nosotros -->
+            <div class="flex flex-col items-center">
+                <h3 class="text-2xl font-bold text-yellow-400">Sobre CineMax</h3>
+                <p class="mt-2 text-gray-400 text-sm leading-relaxed">
+                    CineMax es el destino definitivo para los amantes del cine. Con más de 20 años de experiencia,
+                    ofrecemos una cartelera variada, eventos especiales y promociones exclusivas.
+                </p>
+            </div>
+
+            <!-- Sección 2: Contacto -->
+            <div class="flex flex-col items-center">
+                <h3 class="text-2xl font-bold text-yellow-400">Contáctanos</h3>
+                <p class="mt-2 text-gray-400 text-sm">
+                    📍 Dirección: Calle 123, Ciudad Cine <br>
+                    📞 Teléfono: +123 456 7890 <br>
+                    📧 Email: contacto@cinemax.com
+                </p>
+            </div>
+
+            <!-- Sección 3: Redes Sociales -->
+            <div class="flex flex-col items-center">
+                <h3 class="text-2xl font-bold text-yellow-400">Síguenos</h3>
+                <div class="mt-3 flex space-x-4">
+                    <a href="#" class="text-gray-400 hover:text-yellow-300 transition transform hover:scale-110">
+                        <i class="fa-brands fa-facebook-f text-3xl"></i>
+                    </a>
+                    <a href="#" class="text-gray-400 hover:text-yellow-300 transition transform hover:scale-110">
+                        <i class="fa-brands fa-twitter text-3xl"></i>
+                    </a>
+                    <a href="#" class="text-gray-400 hover:text-yellow-300 transition transform hover:scale-110">
+                        <i class="fa-brands fa-instagram text-3xl"></i>
+                    </a>
+                    <a href="#" class="text-gray-400 hover:text-yellow-300 transition transform hover:scale-110">
+                        <i class="fa-brands fa-youtube text-3xl"></i>
+                    </a>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Línea divisoria -->
+        <div class="border-t border-gray-700 my-6"></div>
+
+        <!-- Derechos de autor -->
+        <p class="text-center text-gray-500">
+            &copy; 2025 CineMax. Todos los derechos reservados.
+        </p>
+    </div>
+</footer>
+<!-- Scripts -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/js/all.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/flowbite@2.5.2/dist/flowbite.min.js"></script>
+<!-- Script de Bootstrap -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

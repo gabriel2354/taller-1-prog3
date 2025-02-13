@@ -18,7 +18,10 @@
             <span class="text-2xl font-bold text-yellow-400 font-cinematic">CineMax</span>
         </a>
         <div class="hidden md:flex space-x-6">
-            <a th:href="@{/}" class="text-yellow-400 hover:text-yellow-300 transition"><i class="fa-solid fa-home"></i> Inicio</a>
+            <a th:href="@{/usuarios}" class="text-yellow-400 hover:text-yellow-300 transition">
+                <i class="fa-solid fa-user-shield"></i> Admin
+            </a>
+
             <a th:href="@{/reservas}" class="text-yellow-400 hover:text-yellow-300 transition"><i class="fa-solid fa-ticket"></i> Reservas</a>
             <a th:href="@{/clientes}" class="text-yellow-400 hover:text-yellow-300 transition"><i class="fa-solid fa-users"></i> Clientes</a>
             <a th:href="@{/peliculas}" class="text-yellow-400 hover:text-yellow-300 transition"><i class="fa-solid fa-clapperboard"></i> Películas</a>

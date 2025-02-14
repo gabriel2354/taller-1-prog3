@@ -13,9 +13,9 @@ import java.util.Collections;
 import java.util.Optional;
 
 @Service
-public class UserDetailsServiceImpl implements UserDetailsService {
+public class UserDetailsServiceImpl  {
 
-    private final UsuarioRepositorio usuarioRepositorio;
+ /*   private final UsuarioRepositorio usuarioRepositorio;
 
     public UserDetailsServiceImpl(UsuarioRepositorio usuarioRepositorio) {
         this.usuarioRepositorio = usuarioRepositorio;
@@ -29,7 +29,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
         return new User(usuario.getUsername(), usuario.getPassword(),
                 Collections.singletonList(new SimpleGrantedAuthority("ROLE_" + usuario.getRol()))); // 🔥 Agregado "ROLE_"
     }
-
+*/
 
 
 }

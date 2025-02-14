@@ -21,17 +21,19 @@ public class AuthUsuario {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
+                .csrf(csrf -> csrf.disable())
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/login", "/usuarios/registro", "/usuarios/guardar", "/home").permitAll()
+                        .requestMatchers("/login", "/usuarios/registro", "/usuarios/guardar", "/home/**", "/postLogin").permitAll()
                         .requestMatchers("/admin/**").hasRole("ADMIN")  // 🔥 Verifica que sea hasRole y no hasAuthority
-                        .requestMatchers("/empleado/**").hasAnyRole("ADMIN", "EMPLEADO")
-                        .requestMatchers("/cliente/**").hasAnyRole("ADMIN", "CLIENTE")
+                     .requestMatchers("/empleado/**").hasRole("EMPLEADO")
+                       .requestMatchers("/clientes/**").hasRole("CLIENTE")
                         .anyRequest().authenticated()
                 )
                 .formLogin(form -> form
-                        .loginPage("/login") // Página de login personalizada
-                        .defaultSuccessUrl("/home", true) // Redirige a home después del login
+                        .loginPage("/login")// Página de login personalizada
                         .permitAll()
+                        .defaultSuccessUrl("/postLogin",true) // Redirige a home después del login
+
                 )
                 .logout(logout -> logout
                         .logoutUrl("/logout")
